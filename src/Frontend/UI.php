@@ -336,6 +336,9 @@ class UI
                     continue;
                 }
             }
+            if ($account['user_id'] !== (string)$_SESSION['user_id']) {
+                continue;
+            }
             $accounts[$accountId] = $account;
         }
 
@@ -373,7 +376,10 @@ class UI
     private function makeAccountListItem(array $account): string
     {
         $abMgr = $this->abMgr;
-        $account['addressbooks'] = $abMgr->getAddressbookConfigsForAccount($account["id"]);
+        $allBooks = $abMgr->getAddressbookConfigsForAccount($account["id"]);
+        $account['addressbooks'] = array_filter($allBooks, function($abook) use ($account) {
+            return $account['user_id'] === (string)$_SESSION['user_id'];
+        });
 
         // Sort addressbooks by their name
         usort(
@@ -1010,6 +1016,19 @@ class UI
                 // HIDDEN FIELDS
                 $abookIdField = new html_hiddenfield(['name' => "abookid", 'value' => $abookId]);
                 $out .= $abookIdField->show();
+
+                // Если адресная книга общая и пользователь не владелец, показываем только название и описание
+                if (($abookCfg['available_to_all'] ?? '0') === '1' && $account['user_id'] !== (string)$_SESSION['user_id']) {
+                    $out .= '<div class="readonly-abook-info">';
+                    $out .= '<h2>' . rcube::Q($abookCfg['name']) . '</h2>';
+                    if (!empty($abookCfg['srvdesc'])) {
+                        $out .= '<div>' . rcube::Q($abookCfg['srvdesc']) . '</div>';
+                    }
+                    $out .= '<div><em>' . $rc->locText('AbProps_availabletoall_lbl') . '</em></div>';
+                    $out .= '</div>';
+                    $out = $rc->requestForm($attrib, $out);
+                    return $out;
+                }
 
                 $out .= $this->makeSettingsForm('addressbook', $abookCfg, $fixedAttributes);
                 $out = $rc->requestForm($attrib, $out);
