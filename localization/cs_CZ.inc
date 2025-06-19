@@ -7,5 +7,6 @@ $labels = Array(
 	'AbProps_abname_lbl'=> "Název adresáře kontaktů CardDAV",
 	'AbProps_abname_lbl_new'=> "Nastavit nový adresář kontaktů",
 	'AbProps_refresh_time_lbl'=> "Interval aktualizace (hodiny)",
+	'AbProps_availabletoall_lbl'=> "Dostupné všem uživatelům (sdílený adresář)",
 );
 ?>

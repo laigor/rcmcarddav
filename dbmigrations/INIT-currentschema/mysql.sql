@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS TABLE_PREFIXcarddav_addressbooks (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 	url VARCHAR(4095) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-	flags SMALLINT UNSIGNED NOT NULL DEFAULT 5, -- default: discovered:2 | active:0
+	flags SMALLINT UNSIGNED NOT NULL DEFAULT 5, -- default: discovered:2 | active:0 | bit 6: available_to_all (public/shared)
 	last_updated BIGINT NOT NULL DEFAULT 0, -- time stamp (seconds since epoch) of the last update of the local database
 	refresh_time INT NOT NULL DEFAULT 3600, -- time span (seconds) after that the local database will be refreshed, default 1h
 	sync_token TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, -- sync-token the server sent us for the last sync

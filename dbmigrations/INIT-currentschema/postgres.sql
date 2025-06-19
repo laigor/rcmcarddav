@@ -33,7 +33,7 @@ CREATE TABLE TABLE_PREFIXcarddav_addressbooks (
 	id integer DEFAULT nextval('TABLE_PREFIXcarddav_addressbooks_seq'::text) PRIMARY KEY,
 	name TEXT NOT NULL,
 	url TEXT NOT NULL,
-	flags SMALLINT NOT NULL DEFAULT 5, -- default: discovered:2 | active:0
+	flags SMALLINT NOT NULL DEFAULT 5, -- default: discovered:2 | active:0 | bit 6: available_to_all (public/shared)
 	last_updated BIGINT NOT NULL DEFAULT 0, -- time stamp (seconds since epoch) of the last update of the local database
 	refresh_time INT NOT NULL DEFAULT 3600, -- time span (seconds) after that the local database will be refreshed, default 1h
 	sync_token TEXT NOT NULL DEFAULT '', -- sync-token the server sent us for the last sync

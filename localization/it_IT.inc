@@ -7,5 +7,6 @@ $labels = Array(
 	'AbProps_abname_lbl'=> "Nome nuova rubrica",
 	'AbProps_abname_lbl_new'=> "Crea una nuova rubrica",
 	'AbProps_refresh_time_lbl'=> "Frequenza di aggiornamento (ore)",
+	'AbProps_availabletoall_lbl'=> "Disponibile per tutti gli utenti (rubrica condivisa)",
 );
 ?>

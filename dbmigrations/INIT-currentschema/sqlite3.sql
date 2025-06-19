@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS TABLE_PREFIXcarddav_addressbooks (
 	sync_token   TEXT NOT NULL DEFAULT '', -- sync-token the server sent us for the last sync
 
 	account_id   integer NOT NULL,
-	flags        integer NOT NULL DEFAULT 5, -- default: discovered:2 | active:0
+	flags        integer NOT NULL DEFAULT 5, -- default: discovered:2 | active:0 | bit 6: available_to_all (public/shared)
 
 	-- not enforced by sqlite < 3.6.19
 	FOREIGN KEY(account_id) REFERENCES TABLE_PREFIXcarddav_accounts(id) ON DELETE CASCADE ON UPDATE CASCADE

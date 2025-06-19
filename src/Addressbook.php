@@ -95,7 +95,12 @@ class Addressbook extends rcube_addressbook
         $this->config = $config;
         $this->primary_key = 'id';
         $this->groups   = true;
-        $this->readonly = ($config['readonly'] != '0');
+        // If available_to_all is set and текущий пользователь не владелец, делаем только для чтения
+        if (($config['available_to_all'] ?? '0') === '1' && $account->getUserId() !== $_SESSION['user_id']) {
+            $this->readonly = true;
+        } else {
+            $this->readonly = ($config['readonly'] != '0');
+        }
         $this->date_cols = ['birthday', 'anniversary'];
         $this->id       = $dbid;
 

@@ -7,5 +7,6 @@ $labels = Array(
 	'AbProps_abname_lbl'=> "Название адресной книги",
 	'AbProps_abname_lbl_new'=> "Настроить новую адресную книгу",
 	'AbProps_refresh_time_lbl'=> "Частота обновления (часов)",
+	'AbProps_availabletoall_lbl'=> "Доступна всем пользователям (общая адресная книга)",
 );
 ?>

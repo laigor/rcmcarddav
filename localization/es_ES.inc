@@ -7,5 +7,6 @@ $labels = Array(
 	'AbProps_abname_lbl'=> "Nombre de la libreta de direcciones",
 	'AbProps_abname_lbl_new'=> "Configurar una nueva libreta de direcciones",
 	'AbProps_refresh_time_lbl'=> "Intervalo de actualización (horas)",
+	'AbProps_availabletoall_lbl'=> "Disponible para todos los usuarios (libreta de direcciones compartida)",
 );
 ?>

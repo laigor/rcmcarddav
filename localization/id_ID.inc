@@ -7,5 +7,6 @@ $labels = Array(
 	'AbProps_abname_lbl'=> "Nama buku alamat",
 	'AbProps_abname_lbl_new'=> "Mengkonfigurasi buku alamat baru",
 	'AbProps_refresh_time_lbl'=> "Interval update (dalam jam)",
+	'AbProps_availabletoall_lbl'=> "Tersedia untuk semua pengguna (buku alamat bersama)",
 );
 ?>

@@ -106,6 +106,7 @@ class UI
             ]
         ],
         [ 'AbProps_reqemail_lbl', 'require_always_email', 'checkbox', '0' ],
+        [ 'AbProps_availabletoall_lbl', 'available_to_all', 'checkbox', '0' ],
     ];
 
     /**
@@ -228,6 +229,7 @@ class UI
                         ]
                     ],
                     [ 'AbProps_reqemail_lbl', 'require_always_email', 'checkbox', '0' ],
+                    [ 'AbProps_availabletoall_lbl', 'available_to_all', 'checkbox', '0' ],
                 ]
             ],
         ]

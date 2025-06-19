@@ -88,6 +88,7 @@ abstract class AbstractDatabase
                 'readonly'             => 3,
                 'require_always_email' => 4,
                 'template'             => 5, // pseudo-addressbook that stores initial settings for new addressbooks
+                'available_to_all'     => 6, // addressbook is available to all users (public/shared)
             ]
         ],
         'accounts' => [

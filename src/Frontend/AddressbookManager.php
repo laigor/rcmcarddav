@@ -72,7 +72,8 @@ use MStilkerich\RCMCardDAV\Db\AbstractDatabase;
  *     discovered: Int1,
  *     readonly: Int1,
  *     require_always_email: Int1,
- *     template: Int1
+ *     template: Int1,
+ *     available_to_all: Int1
  * }
  *
  * XXX temporary workaround for vimeo/psalm#8984 - This should be defined in UI.php instead
@@ -110,7 +111,8 @@ use MStilkerich\RCMCardDAV\Db\AbstractDatabase;
  *     discovered?: Int1,
  *     readonly?: Int1,
  *     require_always_email?: Int1,
- *     template?: Int1
+ *     template?: Int1,
+ *     available_to_all?: Int1
  * } & array<string, ?string>
  *
  * Type for an addressbook filter on the addressbook flags mask, expvalue
@@ -194,6 +196,7 @@ class AddressbookManager
         'readonly'       => [ false, true ],
         'require_always_email' => [false, true],
         'template'       => [false, false],
+        'available_to_all' => [false, true],
     ];
 
     /** @var ?array<string, AccountCfg> $accountsDb
@@ -406,10 +409,18 @@ class AddressbookManager
             $allAccountIds = $this->getAccountIds();
             $this->abooksDb = [];
 
+            // Получаем все адресные книги, принадлежащие пользователю
             if (!empty($allAccountIds)) {
                 /** @var FullAbookRow $abookrow */
                 foreach ($db->get(['account_id' => $allAccountIds], [], 'addressbooks') as $abookrow) {
                     $abookCfg = $this->abookRow2Cfg($abookrow);
+                    $this->abooksDb[$abookrow["id"]] = $abookCfg;
+                }
+            }
+            // Добавляем все общие адресные книги (available_to_all=1), если их ещё нет в списке
+            foreach ($db->get(['available_to_all' => '1'], [], 'addressbooks') as $abookrow) {
+                $abookCfg = $this->abookRow2Cfg($abookrow);
+                if (!isset($this->abooksDb[$abookrow["id"]])) {
                     $this->abooksDb[$abookrow["id"]] = $abookCfg;
                 }
             }

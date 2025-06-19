@@ -7,5 +7,6 @@ $labels = Array(
 	'AbProps_abname_lbl'=> "Namn på adressboken",
 	'AbProps_abname_lbl_new'=> "Konfigurera en ny addressbok",
 	'AbProps_refresh_time_lbl'=> "Uppdateringsintervall (timmar)",
+	'AbProps_availabletoall_lbl'=> "Tillgänglig för alla användare (delad adressbok)",
 );
 ?>

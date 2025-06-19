@@ -8,6 +8,7 @@ $labels = Array(
 	'AbProps_abname_lbl_new' => "配置新地址簿",
 	'AbProps_refresh_time_lbl' => "更新間隔（小時）",
 	'AbProps_lastupdate_time_lbl'=>'最後更新時間',
+	'AbProps_availabletoall_lbl' => "對所有用戶可用（共享通訊錄）",
 	'cd_AccProps_frompreset_lbl' => ' (從預設 _PRESETNAME_)',
 );
 ?>
