@@ -1005,6 +1005,10 @@ class UI
             if (isset($abookId)) {
                 $abookCfg = $this->getEnhancedAbookConfig($abookId);
                 $account = $this->getVisibleAccountConfig($abookCfg["account_id"]);
+                // Показывать настройки только владельцу
+                if ($account['user_id'] !== (string)$_SESSION['user_id']) {
+                    return '';
+                }
                 $fixedAttributes = $this->getFixedSettings($account['presetname'], $abookCfg['url']);
 
                 // HIDDEN FIELDS
