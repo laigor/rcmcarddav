@@ -409,18 +409,15 @@ class AddressbookManager
             $allAccountIds = $this->getAccountIds();
             $this->abooksDb = [];
 
-            // Получаем все адресные книги, принадлежащие пользователю
-            if (!empty($allAccountIds)) {
-                /** @var FullAbookRow $abookrow */
-                foreach ($db->get(['account_id' => $allAccountIds], [], 'addressbooks') as $abookrow) {
-                    $abookCfg = $this->abookRow2Cfg($abookrow);
-                    $this->abooksDb[$abookrow["id"]] = $abookCfg;
-                }
-            }
-            // Добавляем все общие адресные книги (available_to_all=1), если их ещё нет в списке
-            foreach ($db->get(['available_to_all' => '1'], [], 'addressbooks') as $abookrow) {
+            // Получаем все адресные книги, принадлежащие пользователю и все общие (available_to_all)
+            /** @var FullAbookRow $abookrow */
+            foreach ($db->get([], [], 'addressbooks') as $abookrow) {
                 $abookCfg = $this->abookRow2Cfg($abookrow);
-                if (!isset($this->abooksDb[$abookrow["id"]])) {
+                // Добавляем если это адресная книга пользователя или общая
+                if (
+                    (!empty($allAccountIds) && in_array($abookrow['account_id'], $allAccountIds)) ||
+                    ($abookCfg['available_to_all'] === '1')
+                ) {
                     $this->abooksDb[$abookrow["id"]] = $abookCfg;
                 }
             }
